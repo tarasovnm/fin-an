@@ -1,0 +1,26 @@
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: #f3f6f7;
+  border: 1px solid #d7dbde;
+  border-radius: 5px;
+
+  &__label {
+    width: 30%;
+    font-weight: bold;
+  }
+
+  &__data {
+    width: 70%;
+    padding: 10px 0;
+
+    input {
+      width: 80%;
+      padding: 5px;
+      font-size: 16px;
+    }
+  }
+}
