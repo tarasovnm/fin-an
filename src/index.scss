@@ -10,8 +10,9 @@ $default-font: "Roboto", sans-serif;
 
 body {
   position: relative;
+  margin: 0;
   font-family: $default-font;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 img {

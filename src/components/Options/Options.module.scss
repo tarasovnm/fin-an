@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 20px 30px;
+  padding: 20px 20px;
   margin-bottom: 10px;
   background-color: #f3f6f7;
   border: 1px solid #d7dbde;
@@ -11,16 +11,25 @@
   &__label {
     width: 30%;
     font-weight: bold;
+
+    &:first-child {
+      margin-bottom: 15px;
+    }
   }
 
   &__data {
     width: 70%;
-    padding: 10px 0;
+    padding: 0;
+    margin-bottom: 15px;
 
     input {
       width: 100%;
       padding: 5px;
-      font-size: 16px;
+      font-size: 14px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

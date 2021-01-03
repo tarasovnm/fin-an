@@ -4,15 +4,13 @@ import Header from "../Header/Header";
 import BalanceContainer from "../Balance/BalanceContainer";
 
 function App() {
-    return (
-        <div className={s.App}>
-            <div className={s.App__container}>
-                <Header/>
-                <Options/>
-                <BalanceContainer/>
-            </div>
-        </div>
-    );
+  return (
+    <div className={s.App}>
+      <Header />
+      <Options />
+      <BalanceContainer />
+    </div>
+  );
 }
 
 export default App;
