@@ -1,17 +1,13 @@
-import s from "./Perido.module.scss";
+import s from "./Period.module.scss";
 import YearPicker from "./YearPicker/YearPicker";
 
-const Period = ({ analysisPeriod }) => {
-
-  const changePeriodStart = () => {
-    console.log('Изменено начало периода');
-  }
+const Period = ({analysisPeriod, changePeriodStart, changePeriodEnd}) => {
 
   return (
     <div className={s.period}>
       <YearPicker value={analysisPeriod.start} changeValue={changePeriodStart} />
       <span className="material-icons">remove</span>
-      <YearPicker value={analysisPeriod.end} />
+      <YearPicker value={analysisPeriod.end} changeValue={changePeriodEnd} />
     </div>
   );
 }

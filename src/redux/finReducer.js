@@ -1,3 +1,9 @@
+const MAX_PERIOD_LENGTH = 5;
+
+const CHANGE_PERIOD_START = 'CHANGE_PERIOD_START';
+const CHANGE_PERIOD_END = 'CHANGE_PERIOD_END';
+const COMPANY_NAME_CHANGED = 'COMPANY_NAME_CHANGED';
+
 const initialState = {
   companyName: null,
   analysisPeriod: {
@@ -225,8 +231,52 @@ const initialState = {
 }
 
 const finReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case COMPANY_NAME_CHANGED:
+      return {
+        ...state,
+        companyName: action.newText
+      };
 
-  return state;
+    case CHANGE_PERIOD_START:
+      let oldStartValue = state.analysisPeriod.start;
+      let newStartValue = state.analysisPeriod.start + action.delta;
+
+      if (newStartValue <= 2010 || newStartValue >= state.analysisPeriod.end || newStartValue <= state.analysisPeriod.end - MAX_PERIOD_LENGTH) {
+        newStartValue = oldStartValue;
+      }
+
+      return {
+        ...state,
+        analysisPeriod: {
+          start: newStartValue,
+          end: state.analysisPeriod.end
+        }
+      };
+
+    case CHANGE_PERIOD_END:
+      let oldEndValue = state.analysisPeriod.end;
+      let newEndValue = state.analysisPeriod.end + action.delta;
+      if (newEndValue > 2020 || newEndValue <= state.analysisPeriod.start || newEndValue >= state.analysisPeriod.start + MAX_PERIOD_LENGTH) {
+        newEndValue = oldEndValue;
+      }
+
+      return {
+        ...state,
+        analysisPeriod: {
+          start: state.analysisPeriod.start,
+          end: newEndValue
+        }
+      };
+
+    default:
+      return state;
+  }
+
 }
+
+export const updateCompanyNameAC = (text) => ({type: COMPANY_NAME_CHANGED, newText: text});
+export const changePeriodStartAC = (delta) => ({type: CHANGE_PERIOD_START, delta});
+export const changePeriodEndAC = (delta) => ({type: CHANGE_PERIOD_END, delta});
 
 export default finReducer;

@@ -1,5 +1,6 @@
 import Options from "./Options";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
+import {changePeriodStartAC, changePeriodEndAC, updateCompanyNameAC} from "../../redux/finReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,7 +11,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    updateCompanyName: (text) => dispatch(updateCompanyNameAC(text)),
+    changePeriodStart: (delta) => dispatch(changePeriodStartAC(delta)),
+    changePeriodEnd: (delta) => dispatch(changePeriodEndAC(delta)),
   }
 }
 
