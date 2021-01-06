@@ -1,15 +1,8 @@
 import s from './BalanceTable.module.scss';
 
-const TableHeader = ({ analysisPeriod }) => {
-  let numOfYears = analysisPeriod.end - analysisPeriod.start;
-
-  let years = [];
-  for (let i = 0; i <= numOfYears; i++) {
-    years.push(analysisPeriod.start + i);
-  }
-
+const TableHeader = ({ years }) => {
   let columns = [];
-  for (let i = 0; i <= numOfYears + 2; i++) {
+  for (let i = 0; i <= years.length + 1; i++) {
     columns.push(i + 1);
   }
 
@@ -27,62 +20,56 @@ const TableHeader = ({ analysisPeriod }) => {
   );
 }
 
-const SectoinRow = ({ sectionStr }) => {
-  let years = Object.keys(sectionStr.values);
-
+const SectoinRow = ({ sectionStr, years }) => {
   return (
     <tr>
       <td className={s.table__str}>{sectionStr.name}</td>
       <td className={s.table__code}>{sectionStr.code}</td>
-      {years.map(year => <td className={s.table__value} key={year}>{sectionStr.values[year]}</td>)}
+      {sectionStr.values.map((val, idx) => <td className={s.table__value} key={idx}>{val}</td>)}
     </tr>
   );
 }
 
-const SectionTotal = ({ totalData, sectionId }) => {
-  let years = Object.keys(totalData.values);
-
+const SectionTotal = ({ totalData, sectionId, years }) => {
   return (
     <tr className={s.table__sectionTotal}>
       <td>ИТОГО по разделу {sectionId}</td>
       <td className={s.table__code}>{totalData.code}</td>
-      {years.map(year => <td className={s.table__value} key={year}>{totalData.values[year]}</td>)}
+      {totalData.values.map((val, idx) => <td className={s.table__value} key={idx}>{val}</td>)}
     </tr>
   );
 }
 
-const BalanceSection = ({ sectionData, numOfYears }) => {
+const BalanceSection = ({ sectionData, years }) => {
   return (
     <>
       <tr>
-        <td className={s.table__section} colSpan={numOfYears + 3}>{sectionData.name}</td>
+        <td className={s.table__section} colSpan={years.length + 2}>{sectionData.name}</td>
       </tr>
-      {sectionData.data.map(sectionStr => <SectoinRow sectionStr={sectionStr} key={sectionStr.code} />)}
-      <SectionTotal totalData={sectionData.total} sectionId={sectionData.id} />
+      {sectionData.data.map(sectionStr => <SectoinRow sectionStr={sectionStr} key={sectionStr.code} years={years} />)}
+      <SectionTotal totalData={sectionData.total} sectionId={sectionData.id} years={years} />
     </>
   );
 }
 
-const PartTotal = ({ totalData }) => {
-  let years = Object.keys(totalData.values);
-
+const PartTotal = ({ totalData, years }) => {
   return (
     <tr className={s.table__partTotal}>
       <td>БАЛАНС</td>
       <td className={s.table__code}>{totalData.code}</td>
-      {years.map(year => <td className={s.table__value} key={year}>{totalData.values[year]}</td>)}
+      {totalData.values.map((val, idx) => <td className={s.table__value} key={idx}>{val}</td>)}
     </tr>
   );
 }
 
-const TablePart = ({ partData, name, numOfYears }) => {
+const TablePart = ({ partData, name, years }) => {
   return (
     <>
       <tr>
-        <td className={s.table__part} colSpan={numOfYears + 3}>{name}</td>
+        <td className={s.table__part} colSpan={years.length + 2}>{name}</td>
       </tr>
-      {partData.sections.map(section => <BalanceSection sectionData={section} numOfYears={numOfYears} key={section.id} />)}
-      <PartTotal totalData={partData.total} />
+      {partData.sections.map(section => <BalanceSection sectionData={section} years={years} key={section.id} />)}
+      <PartTotal totalData={partData.total} years={years} />
     </>
   );
 }
@@ -90,12 +77,20 @@ const TablePart = ({ partData, name, numOfYears }) => {
 const BalanceTable = ({ tableData, analysisPeriod }) => {
   let numOfYears = analysisPeriod.end - analysisPeriod.start;
 
+  let years = [];
+  let i = numOfYears;
+
+  while (i >= 0) {
+    years.push(analysisPeriod.start + i);
+    i--;
+  }
+
   return (
     <table className={s.table}>
-      <TableHeader analysisPeriod={analysisPeriod} />
+      <TableHeader years={years} />
       <tbody>
-        <TablePart partData={tableData.active} name="АКТИВ" numOfYears={numOfYears} />
-        <TablePart partData={tableData.passive} name="ПАССИВ" numOfYears={numOfYears} />
+        <TablePart partData={tableData.active} name="АКТИВ" years={years} />
+        <TablePart partData={tableData.passive} name="ПАССИВ" years={years} />
       </tbody>
     </table>
   )
