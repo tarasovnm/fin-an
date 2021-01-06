@@ -40,7 +40,15 @@
     text-align: center;
   }
 
-  &__value {
+  &__cell {
     text-align: center;
+  }
+
+  &__input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    margin: 0;
+    width: 70px;
   }
 }

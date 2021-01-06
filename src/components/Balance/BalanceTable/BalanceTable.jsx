@@ -1,3 +1,4 @@
+import React from 'react';
 import s from './BalanceTable.module.scss';
 
 const TableHeader = ({ years }) => {
@@ -20,12 +21,30 @@ const TableHeader = ({ years }) => {
   );
 }
 
-const SectoinRow = ({ sectionStr, years }) => {
+const Cell = ({ value }) => {
+
+  const onCellChange = (e) => {
+    const target = e.target;
+    console.log(target.value);
+  }
+
+  return (
+    <td className={s.table__cell}>
+      <input className={s.table__input}
+        type="text"
+        value={value}
+        onChange={onCellChange}>
+      </input>
+    </td>
+  );
+}
+
+const SectoinRow = ({ sectionStr }) => {
   return (
     <tr>
       <td className={s.table__str}>{sectionStr.name}</td>
       <td className={s.table__code}>{sectionStr.code}</td>
-      {sectionStr.values.map((val, idx) => <td className={s.table__value} key={idx}>{val}</td>)}
+      {sectionStr.values.map((val, idx) => <Cell value={val} key={idx} />)}
     </tr>
   );
 }
@@ -46,7 +65,7 @@ const BalanceSection = ({ sectionData, years }) => {
       <tr>
         <td className={s.table__section} colSpan={years.length + 2}>{sectionData.name}</td>
       </tr>
-      {sectionData.data.map(sectionStr => <SectoinRow sectionStr={sectionStr} key={sectionStr.code} years={years} />)}
+      {sectionData.data.map(sectionStr => <SectoinRow sectionStr={sectionStr} key={sectionStr.code} />)}
       <SectionTotal totalData={sectionData.total} sectionId={sectionData.id} years={years} />
     </>
   );
