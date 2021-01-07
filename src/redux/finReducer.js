@@ -64,16 +64,12 @@ const finReducer = (state = initialState, action) => {
       };
 
     case CELL_VALUE_CHANGED:
-      console.log('Значение в ячейке изменено', action.data);
       const newCellValue = parseInt(action.data.value)
       if (newCellValue) {
-        console.log('Ведены корректные данные ', newCellValue);
         return {
           ...state,
           balanceData: changeCellValue(state.balanceData, action.data.code, action.data.index, newCellValue)
         }
-      } else {
-        console.log('Введенные данные некорректны');
       }
       return state;
 

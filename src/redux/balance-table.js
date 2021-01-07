@@ -288,5 +288,28 @@ export function changeCellValue(balance, code, index, value) {
     });
   });
 
-  return newBalance;
+  return calculateBalanceTotals(newBalance);
+}
+
+export function calculateBalanceTotals(balance) {
+  Object.keys(balance).forEach(part => {
+    let partTotal = [];
+    balance[part].sections.forEach(section => {
+      let total = [];
+      section.data.forEach(row => {
+        row.values.forEach((val, idx) => {
+          total[idx] = !total[idx] ? val : total[idx] + val;
+        });
+      });
+      section.total.values = total;
+
+      section.total.values.forEach((val, idx) => {
+        partTotal[idx] = !partTotal[idx] ? val : partTotal[idx] + val;
+      });
+    });
+
+    balance[part].total.values = partTotal;
+  });
+
+  return balance;
 }
