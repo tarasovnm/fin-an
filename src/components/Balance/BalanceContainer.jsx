@@ -1,5 +1,6 @@
 import Balance from "./Balance";
 import { connect } from "react-redux";
+import { cellValueChangedAC } from "../../redux/finReducer";
 
 const mapStateToProps = (state) => {
   return {
@@ -9,7 +10,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    cellValueChanged: (data) => dispatch(cellValueChangedAC(data)),
+  }
 }
 
 const BalanceContainer = connect(mapStateToProps, mapDispatchToProps)(Balance);

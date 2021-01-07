@@ -272,3 +272,21 @@ function shiftArr(arr) {
 function unshiftArr(arr) {
   arr.unshift(0);
 }
+
+export function changeCellValue(balance, code, index, value) {
+
+  let newBalance = { ...balance };
+
+  Object.keys(newBalance).forEach(part => {
+    newBalance[part].sections.forEach(section => {
+      section.data.forEach(row => {
+        if (row.code === parseInt(code)) {
+          row.values = [...row.values];
+          row.values[parseInt(index)] = value;
+        }
+      });
+    });
+  });
+
+  return newBalance;
+}

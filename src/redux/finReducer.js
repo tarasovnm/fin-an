@@ -1,10 +1,11 @@
-import { createBalanceState, changeStartColumn, changeEndColumn } from './balance-table';
+import { createBalanceState, changeStartColumn, changeEndColumn, changeCellValue } from './balance-table';
 
 const MAX_PERIOD_LENGTH = 5;
 
 const CHANGE_PERIOD_START = 'CHANGE_PERIOD_START';
 const CHANGE_PERIOD_END = 'CHANGE_PERIOD_END';
 const COMPANY_NAME_CHANGED = 'COMPANY_NAME_CHANGED';
+const CELL_VALUE_CHANGED = 'CELL_VALUE_CHANGED';
 
 const initialState = {
   companyName: null,
@@ -62,6 +63,20 @@ const finReducer = (state = initialState, action) => {
         balanceData: endDelta ? changeEndColumn(state.balanceData, action.delta) : state.balanceData
       };
 
+    case CELL_VALUE_CHANGED:
+      console.log('Значение в ячейке изменено', action.data);
+      const newCellValue = parseInt(action.data.value)
+      if (newCellValue) {
+        console.log('Ведены корректные данные ', newCellValue);
+        return {
+          ...state,
+          balanceData: changeCellValue(state.balanceData, action.data.code, action.data.index, newCellValue)
+        }
+      } else {
+        console.log('Введенные данные некорректны');
+      }
+      return state;
+
     default:
       return state;
   }
@@ -71,5 +86,6 @@ const finReducer = (state = initialState, action) => {
 export const updateCompanyNameAC = (text) => ({ type: COMPANY_NAME_CHANGED, newText: text });
 export const changePeriodStartAC = (delta) => ({ type: CHANGE_PERIOD_START, delta });
 export const changePeriodEndAC = (delta) => ({ type: CHANGE_PERIOD_END, delta });
+export const cellValueChangedAC = (data) => ({ type: CELL_VALUE_CHANGED, data });
 
 export default finReducer;
