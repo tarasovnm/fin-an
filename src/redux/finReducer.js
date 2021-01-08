@@ -1,4 +1,5 @@
 import { createBalanceState, changeStartColumn, changeEndColumn, changeCellValue } from './balance-table';
+import getExampleState from './exampleState';
 
 const MAX_PERIOD_LENGTH = 5;
 
@@ -16,7 +17,9 @@ const initialState = {
   balanceData: createBalanceState(2018, 2020)
 }
 
-const finReducer = (state = initialState, action) => {
+const exampleState = getExampleState();
+
+const finReducer = (state = exampleState, action) => {
   switch (action.type) {
     case COMPANY_NAME_CHANGED:
       return {

@@ -1,5 +1,5 @@
 export function createBalanceState(startYear, endYear) {
-  const initialValues = [0, 0, 0]
+  const initialValues = [0, 0, 0];
 
   return {
     active: {
