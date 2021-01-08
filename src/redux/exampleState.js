@@ -2,7 +2,7 @@ import { calculateBalanceTotals } from './balance-table';
 
 export default function getExampleState() {
   return {
-    companyName: 'ООО "ОБРАЗЕЦ',
+    companyName: 'ООО "ОБРАЗЕЦ"',
     analysisPeriod: {
       start: 2017,
       end: 2019
