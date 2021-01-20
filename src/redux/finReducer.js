@@ -9,6 +9,7 @@ const COMPANY_NAME_CHANGED = 'COMPANY_NAME_CHANGED';
 const CELL_VALUE_CHANGED = 'CELL_VALUE_CHANGED';
 const CLEAR_INPUT_DATA = 'CLEAR_INPUT_DATA';
 const LOAD_EXAMPLE_DATA = 'LOAD_EXAMPLE_DATA';
+const PREPARE_REPORT = 'PREPARE_REPORT';
 
 const initialState = {
   companyName: null,
@@ -16,7 +17,8 @@ const initialState = {
     start: 2018,
     end: 2020
   },
-  balanceData: createBalanceState(2018, 2020)
+  balanceData: createBalanceState(2018, 2020),
+  isReportPrepared: false
 }
 
 // const exampleState = getExampleState();
@@ -79,7 +81,6 @@ const finReducer = (state = initialState, action) => {
       return state;
 
     case CLEAR_INPUT_DATA:
-      console.log('Пришел запрос на очистку введенных данных');
       return {
         companyName: null,
         analysisPeriod: {
@@ -90,8 +91,14 @@ const finReducer = (state = initialState, action) => {
       };
 
     case LOAD_EXAMPLE_DATA:
-      console.log('Пришел запрос на загрузку данных организации-примера')
       return getExampleState();
+
+    case PREPARE_REPORT:
+      console.log('Пришел запрос на подготовку отчета');
+      return {
+        ...state,
+        isReportPrepared: true
+      }
 
     default:
       return state;
@@ -105,5 +112,6 @@ export const changePeriodEndAC = (delta) => ({ type: CHANGE_PERIOD_END, delta })
 export const cellValueChangedAC = (data) => ({ type: CELL_VALUE_CHANGED, data });
 export const clearInputDataAC = () => ({ type: CLEAR_INPUT_DATA });
 export const loadExampleDataAC = () => ({ type: LOAD_EXAMPLE_DATA });
+export const prepareReportAC = () => ({ type: PREPARE_REPORT });
 
 export default finReducer;

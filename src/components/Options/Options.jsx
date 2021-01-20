@@ -13,7 +13,7 @@ const Options = ({ companyName, analysisPeriod, updateCompanyName,
   }
 
   return (
-    <div className={s.options}>
+    <section className={s.options}>
       <div className={s.options__label}>
         <label htmlFor="name">Наименование организации:</label>
       </div>
@@ -30,7 +30,7 @@ const Options = ({ companyName, analysisPeriod, updateCompanyName,
         <button className={s.options__btn} onClick={clearInputData}>Очистить</button>
         <button className={s.options__btn} onClick={loadExampleData}>Загрузить данные организации-примера</button>
       </div>
-    </div>
+    </section>
   );
 }
 
