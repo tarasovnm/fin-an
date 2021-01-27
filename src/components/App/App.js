@@ -6,6 +6,9 @@ import CalculateContainer from '../Calculate/CalculateContainer';
 import PropertyStructureContainer from '../PropertySturcture/PropertyStructureContainer';
 import NetAssetsContainer from '../NetAssets/NetAssetsContainer';
 import FinancialStabilityContainer from '../FinancialStability/FinancialStabilityContainer';
+import AnalyticalBalance from '../AnalyticalBalance/AnalyticalBalanceContainer';
+import AnalyticalProfitLoss from '../AnalyticalProfitLoss/AnalyticalProfitLossContainer';
+
 
 function App() {
   return (
@@ -17,6 +20,8 @@ function App() {
       <PropertyStructureContainer />
       <NetAssetsContainer />
       <FinancialStabilityContainer />
+      <AnalyticalBalance />
+      <AnalyticalProfitLoss />
     </div>
   );
 }

@@ -10,3 +10,58 @@
     margin-bottom: 5px;
   }
 }
+
+.table {
+  font-size: 13px;
+  table-layout: fixed;
+  border: 2px solid grey;
+  border-collapse: collapse;
+  background-color: #ebf6ff;
+
+  thead {
+    background-color: #d7ecff;
+  }
+
+  th,
+  td {
+    padding: 3px;
+    border: 1px solid grey;
+  }
+
+  &__colNum {
+    text-align: center;
+  }
+
+  &__part {
+    font-weight: bold;
+    background-color: #bbd7f1;
+  }
+
+  &__section {
+    font-weight: bold;
+  }
+
+  &__sectionTotal {
+    background-color: #d9edff;
+  }
+
+  &__partTotal {
+    background-color: #d9edff;
+  }
+
+  &__code {
+    text-align: center;
+  }
+
+  &__cell {
+    text-align: center;
+  }
+
+  &__input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    margin: 0;
+    width: 70px;
+  }
+}
