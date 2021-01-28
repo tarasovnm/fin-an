@@ -1,5 +1,5 @@
-import { createBalanceState, changeStartColumn, changeEndColumn, changeCellValue } from './balance-table';
-import getExampleState from './exampleState';
+import { createBalanceState, changeStartColumn, changeEndColumn, changeCellValue } from '../balance/balance-table';
+import getExampleState from '../balance/example-state';
 
 const MAX_PERIOD_LENGTH = 5;
 
@@ -103,7 +103,6 @@ const finReducer = (state = initialState, action) => {
     default:
       return state;
   }
-
 }
 
 export const updateCompanyNameAC = (text) => ({ type: COMPANY_NAME_CHANGED, newText: text });

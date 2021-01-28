@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { prepareReportAC } from './../../redux/finReducer';
+import { prepareReportAC } from './../../redux/fin-reducer';
 import Calculate from './Calculate';
 
 const mapStateToProps = (state) => {

@@ -1,8 +1,8 @@
-import finReducer from "./finReducer";
-import {combineReducers, createStore} from "redux";
+import finReducer from "./fin-reducer";
+import { combineReducers, createStore } from "redux";
 
 const reducers = combineReducers({
-    finAnalysis: finReducer
+  finAnalysis: finReducer
 })
 
 let store = createStore(reducers);

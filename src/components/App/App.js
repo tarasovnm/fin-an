@@ -3,11 +3,11 @@ import OptionsContainer from "../Options/OptionsContainer";
 import Header from "../Header/Header";
 import BalanceContainer from "../Balance/BalanceContainer";
 import CalculateContainer from '../Calculate/CalculateContainer';
-import PropertyStructureContainer from '../PropertySturcture/PropertyStructureContainer';
-import NetAssetsContainer from '../NetAssets/NetAssetsContainer';
-import FinancialStabilityContainer from '../FinancialStability/FinancialStabilityContainer';
+// import PropertyStructureContainer from '../PropertySturcture/PropertyStructureContainer';
+// import NetAssetsContainer from '../NetAssets/NetAssetsContainer';
+// import FinancialStabilityContainer from '../FinancialStability/FinancialStabilityContainer';
 import AnalyticalBalance from '../AnalyticalBalance/AnalyticalBalanceContainer';
-import AnalyticalProfitLoss from '../AnalyticalProfitLoss/AnalyticalProfitLossContainer';
+// import AnalyticalProfitLoss from '../AnalyticalProfitLoss/AnalyticalProfitLossContainer';
 
 
 function App() {
@@ -17,11 +17,11 @@ function App() {
       <OptionsContainer />
       <BalanceContainer />
       <CalculateContainer />
-      <PropertyStructureContainer />
+      {/* <PropertyStructureContainer />
       <NetAssetsContainer />
-      <FinancialStabilityContainer />
+      <FinancialStabilityContainer /> */}
       <AnalyticalBalance />
-      <AnalyticalProfitLoss />
+      {/* <AnalyticalProfitLoss /> */}
     </div>
   );
 }

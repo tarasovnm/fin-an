@@ -7,7 +7,7 @@ import {
   clearInputDataAC,
   loadExampleDataAC
 }
-  from "../../redux/finReducer";
+  from "../../redux/fin-reducer";
 
 const mapStateToProps = (state) => {
   return {

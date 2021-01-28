@@ -1,6 +1,6 @@
 import Balance from "./Balance";
 import { connect } from "react-redux";
-import { cellValueChangedAC } from "../../redux/finReducer";
+import { cellValueChangedAC } from "../../redux/fin-reducer";
 
 const mapStateToProps = (state) => {
   return {
