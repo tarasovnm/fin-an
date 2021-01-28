@@ -1,5 +1,6 @@
 import { createBalanceState, changeStartColumn, changeEndColumn, changeCellValue } from '../balance/balance-table';
 import getExampleState from '../balance/example-state';
+import createReport from '../balance/report/report';
 
 const MAX_PERIOD_LENGTH = 5;
 
@@ -94,10 +95,11 @@ const finReducer = (state = initialState, action) => {
       return getExampleState();
 
     case PREPARE_REPORT:
-      console.log('Пришел запрос на подготовку отчета');
+      let report = createReport(state);
       return {
         ...state,
-        isReportPrepared: true
+        isReportPrepared: true,
+        report
       }
 
     default:
